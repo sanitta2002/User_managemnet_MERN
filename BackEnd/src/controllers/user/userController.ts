@@ -10,7 +10,7 @@ export class UserController{
         try {
             const user:Iuser=req.body
             const result=await this.UserServices.createUser(user)
-            res.status(201).json(result)
+            res.status(201).json({message:'user created'})
         } catch (error) {
             res.status(500).json({ success: false, message:"error" });
         }

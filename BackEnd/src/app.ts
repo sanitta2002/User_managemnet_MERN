@@ -1,5 +1,6 @@
 import express,{Application} from 'express'
 import dotenv from 'dotenv'
+import cors from 'cors'
 import { UserController } from './controllers/user/userController';
 import { UserRoute } from './routes/user/userRoute';
 import { UserRepository } from './repository/user/userRepository';
@@ -11,6 +12,7 @@ import { UserServices } from './services/user/userSarvices';
        this.app=express()
        dotenv.config()
        this.app.use(express.json())
+       this.setMiddleware()
        this.injectUser()
        this.setUserRoute()
     
@@ -18,6 +20,15 @@ import { UserServices } from './services/user/userSarvices';
 
     public listen(){
       this.app.listen(process.env.PORT,()=>{console.log('server is running')})
+    }
+
+    setMiddleware(){
+      this.app.use(cors({
+        origin:"http://localhost:5173",
+        methods:["GET", "POST", "PUT", "DELETE" , "OPTIONS"],
+        credentials:true
+      }))
+     
     }
 
     private injectUser():UserController{
