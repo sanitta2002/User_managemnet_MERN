@@ -7,4 +7,7 @@ export class UserRepository{
     async createUser(newUser:Iuser):Promise<Iuser>{
        return await UserModel.create(newUser)
     }
+   async findByUserEmail(email: string): Promise<Iuser | null>{
+        return await UserModel.findOne({email})
+    }
 }
