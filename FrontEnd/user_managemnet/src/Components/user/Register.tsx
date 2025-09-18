@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from "react"
 import { Api } from "../../Api/UserApi"
 import type { User } from "../../Interfase/User"
+import { toast } from "react-toastify"
 
 
 
@@ -15,19 +16,19 @@ function Register() {
     e.preventDefault()
 
     if (!name.trim() || !email.trim() || !password.trim() || !Cpassword.trim()) {
-      alert("Please fill in all fields")
+      toast.error("Please fill in all fields")
       return
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (email && !emailRegex.test(email)) {
-      alert("Invalid email format.")
+      toast.error("Invalid email format.")
     }
     if (password && password.length < 6) {
-      alert("Password must be at least 6 characters long.")
+      toast.error("Password must be at least 6 characters long.")
     }
 
     if (password !== Cpassword) {
-      alert("Passwords do not match.")
+      toast.error("Passwords do not match.")
     }
     console.log(name, email, password)
     try {
@@ -37,13 +38,13 @@ function Register() {
         password
       })
       console.log(response.data)
-      alert("Registration successful!")
+      toast.success("Registration successful!")
       setName("");
       setEmail("");
       SetPassword("");
       setCpassword("");
     } catch (error) {
-
+        console.error(error)
     }
   }
   return (
@@ -53,8 +54,8 @@ function Register() {
         <form onSubmit={handleSubmit} className="space-y-5">
           <input value={name} onChange={(e) => setName(e.target.value)} type="text" placeholder="Enter your Name"  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
           <input value={email} onChange={(e) => setEmail(e.target.value)} type="text" placeholder="Enter your Email" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
-          <input value={password} onChange={(e) => SetPassword(e.target.value)} type="text" placeholder="Enter your Password" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
-          <input value={Cpassword} onChange={(e) => setCpassword(e.target.value)} type="text" placeholder="Confirm Possword" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
+          <input value={password} onChange={(e) => SetPassword(e.target.value)} type="password" placeholder="Enter your Password" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
+          <input value={Cpassword} onChange={(e) => setCpassword(e.target.value)} type="password" placeholder="Confirm Possword" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
           <button className="w-full p-3 bg-green-900 text-white font-semibold rounded-lg hover:bg-green-900 transition-all duration-300">Submit</button>
         </form>
         <p className="mt-6 text-center text-green-700 text-sm">Already have an Acoount? <a href="#">Login</a></p>
