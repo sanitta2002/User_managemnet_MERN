@@ -12,6 +12,9 @@ export class UserRoute{
           this.UserRouter.post('/signup',(req:Request,res:Response)=>{
            this.userController.userRegister(req,res)
           })
+          this.UserRouter.post('/login',(req:Request,res:Response)=>{
+            this.userController.UserLogin(req,res)
+          })
     }
 
     public getUserRouter(){

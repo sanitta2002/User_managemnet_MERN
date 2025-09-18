@@ -6,3 +6,10 @@ export interface Iuser{
     imgeUrl?:string,
     isAdmin?:boolean
 }
+
+
+export interface LoginResponse {
+    user: Iuser;
+    accessToken: string;
+    refreshToken: string;
+}

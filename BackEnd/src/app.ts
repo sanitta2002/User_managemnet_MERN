@@ -1,5 +1,6 @@
 import express,{Application} from 'express'
 import dotenv from 'dotenv'
+dotenv.config()
 import cors from 'cors'
 import { UserController } from './controllers/user/userController';
 import { UserRoute } from './routes/user/userRoute';
@@ -9,8 +10,8 @@ import { UserServices } from './services/user/userSarvices';
  export class App{
     private app:Application;
     constructor(){
+      // dotenv.config()
        this.app=express()
-       dotenv.config()
        this.app.use(express.json())
        this.setMiddleware()
        this.injectUser()
