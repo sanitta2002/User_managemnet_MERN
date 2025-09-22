@@ -2,6 +2,7 @@ import { useState, type FormEvent } from "react"
 import { Api } from "../../Api/UserApi"
 import type { User } from "../../Interfase/User"
 import { toast } from "react-toastify"
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -10,7 +11,8 @@ function Register() {
   const [email, setEmail] = useState('')
   const [password, SetPassword] = useState('')
   const [Cpassword, setCpassword] = useState('')
-
+   
+  const navigate=useNavigate()
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -58,7 +60,7 @@ function Register() {
           <input value={Cpassword} onChange={(e) => setCpassword(e.target.value)} type="password" placeholder="Confirm Possword" className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200" /><br/>
           <button className="w-full p-3 bg-green-900 text-white font-semibold rounded-lg hover:bg-green-900 transition-all duration-300">Submit</button>
         </form>
-        <p className="mt-6 text-center text-green-700 text-sm">Already have an Acoount? <a href="#">Login</a></p>
+        <p className="mt-6 text-center text-green-700 text-sm">Already have an account? {" "} <span onClick={()=>navigate('/login')} className="text-green-900 hover:underline cursor-pointer">Login</span></p>
       </div>
     </div>
   )

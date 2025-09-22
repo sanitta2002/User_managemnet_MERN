@@ -43,6 +43,7 @@ function Login() {
             <input value={password} onChange={(e)=>setpassword(e.target.value)} type="password" placeholder="Enter your Password"  className="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 focus:border-transparent transition duration-200"/><br/>
             <button className="w-full p-3 bg-green-900 text-white font-semibold rounded-lg hover:bg-green-900 transition-all duration-300">Submit</button>
         </form>
+        <p className="mt-6 text-center text-green-700 text-sm">Don’t have an account?{" "} <span onClick={()=>navigate('/Signup')} className="text-green-900 hover:underline cursor-pointer">Sign up</span></p>
       </div>
     </div>
   )

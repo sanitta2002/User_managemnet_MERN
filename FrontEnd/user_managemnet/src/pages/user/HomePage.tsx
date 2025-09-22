@@ -1,7 +1,10 @@
+import Home from "../../Components/user/Home"
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div>
+      <Home />
+    </div>
   )
 }
 
