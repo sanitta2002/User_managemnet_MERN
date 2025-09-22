@@ -37,4 +37,26 @@ export class UserServices implements IUserServices{
         return {user,accessToken,refreshToken}
     }
 
+    async findbyUserId(id: string): Promise<Iuser | null> {
+        const userId=await this.UserRepository.findUserbyId(id)
+        if(!userId){
+            throw new Error('no student found')
+        }
+        return userId
+    }
+    async updateProfile(id: string, userdata: Partial<Iuser>): Promise<Iuser |null> {
+      if(userdata.email){
+         const existingUser =await this.UserRepository.findByUserEmail(userdata.email as string)
+       if(existingUser  && existingUser ._id?.toString()!==id){
+        throw new Error("Already have user with this email")
+       }
+       
+     }
+     if(userdata.password){
+        userdata.password=await this.bcryptPassword.hashPassword(userdata.password)
+     }
+      return await this.UserRepository.updateProfile(id,userdata)
+    }
+    
+
 }

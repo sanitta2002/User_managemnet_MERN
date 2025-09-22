@@ -14,7 +14,7 @@ const useSchama: mongoose.Schema = new Schema<Iuser>({
     type: String,
     required: true,
   },
-  imgeUrl: {
+  imageUrl: {
     type: String,
     required: false,
     default: "",

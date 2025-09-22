@@ -6,6 +6,7 @@ import { UserController } from './controllers/user/userController';
 import { UserRoute } from './routes/user/userRoute';
 import { UserRepository } from './repository/user/userRepository';
 import { UserServices } from './services/user/userSarvices';
+import cookiParser from "cookie-parser"
 
  export class App{
     private app:Application;
@@ -29,6 +30,8 @@ import { UserServices } from './services/user/userSarvices';
         methods:["GET", "POST", "PUT", "DELETE" , "OPTIONS"],
         credentials:true
       }))
+
+      this.app.use(cookiParser())
      
     }
 

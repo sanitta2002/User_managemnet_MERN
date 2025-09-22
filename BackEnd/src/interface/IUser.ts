@@ -3,7 +3,7 @@ export interface Iuser{
     name:string,
     email:string,
     password:string,
-    imgeUrl?:string,
+    imageUrl?:string,
     isAdmin?:boolean
 }
 

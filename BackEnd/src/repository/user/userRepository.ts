@@ -9,4 +9,11 @@ export class UserRepository{
    async findByUserEmail(email: string): Promise<Iuser | null>{
         return await UserModel.findOne({email})
     }
+    async findUserbyId(id:string):Promise<Iuser| null>{
+        return await UserModel.findById(id)
+    }
+
+    async updateProfile(id:string,updateData:Partial<Iuser>):Promise<Iuser|null>{
+        return await UserModel.findByIdAndUpdate(id,updateData,{new:true})
+    }
 }
