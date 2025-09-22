@@ -4,8 +4,11 @@ import LoginPage from "./pages/user/LoginPage"
 import HomePage from "./pages/user/HomePage"
 import { ToastContainer } from "react-toastify"
 import ProfilePage from "./pages/user/ProfilePage"
-import useRefreshUser from "./Protect/useRefreshUser "
+import useRefreshUser from "./Protect/UseRefreshUser"
 import ProtectedRoute from "./Protect/ProtectRoutUser"
+import Login from "./Components/admin/Login"
+import ProtectedAdmin from "./Protect/ProtectedAdmin"
+import DashBoard from "./Components/admin/DashBoard"
 
 
 
@@ -29,6 +32,11 @@ function App() {
         <ProfilePage/>
         </ProtectedRoute>
         }/>
+
+        <Route path="/admin/login" element={<Login/>}/>
+        <Route path="/admin/dashboard" element={<ProtectedAdmin>
+          <DashBoard/>
+        </ProtectedAdmin>} />
      </Routes>
     
      </BrowserRouter>
