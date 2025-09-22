@@ -7,6 +7,10 @@ import { UserRoute } from './routes/user/userRoute';
 import { UserRepository } from './repository/user/userRepository';
 import { UserServices } from './services/user/userSarvices';
 import cookiParser from "cookie-parser"
+import { AdminContriller } from './controllers/admin/adminController';
+import { AdminRepository } from './repository/admin/AdminRepository';
+import { AdminServices } from './services/admin/AdminServices';
+import { AdminRoute } from './routes/admin/adminRoute';
 
  export class App{
     private app:Application;
@@ -17,6 +21,8 @@ import cookiParser from "cookie-parser"
        this.setMiddleware()
        this.injectUser()
        this.setUserRoute()
+       this.injectAdmin()
+       this.setAdminRoute()
     
     }
 
@@ -45,6 +51,16 @@ import cookiParser from "cookie-parser"
       const userController=this.injectUser()
       const userRoute = new UserRoute(userController)
       this.app.use('/user',userRoute.getUserRouter())
+    }
+    private injectAdmin():AdminContriller{
+      const adminRepository=new AdminRepository()
+      const adminServices=new AdminServices(adminRepository)
+      return new AdminContriller(adminServices)
+    }
+    private setAdminRoute(){
+      const adminController=this.injectAdmin()
+      const adminRoute = new AdminRoute(adminController)
+      this.app.use('/admin',adminRoute.getAdminRoute())
     }
 
 }
