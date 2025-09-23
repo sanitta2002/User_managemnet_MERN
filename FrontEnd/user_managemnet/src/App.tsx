@@ -9,6 +9,7 @@ import ProtectedRoute from "./Protect/ProtectRoutUser"
 import Login from "./Components/admin/Login"
 import ProtectedAdmin from "./Protect/ProtectedAdmin"
 import DashBoard from "./Components/admin/DashBoard"
+import AddUser from "./Components/admin/AddUser"
 
 
 
@@ -37,6 +38,8 @@ function App() {
         <Route path="/admin/dashboard" element={<ProtectedAdmin>
           <DashBoard/>
         </ProtectedAdmin>} />
+        <Route path="/admin/addUser" element={<ProtectedAdmin><AddUser/></ProtectedAdmin>} />
+        
      </Routes>
     
      </BrowserRouter>

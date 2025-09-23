@@ -10,7 +10,7 @@ interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 const ProtectedAdmin=({children}:ProtectedRouteProps)=>{
-  const admin=useSelector((state:RootState)=>state.admin)
+  const admin=useSelector((state:RootState)=>state.admin.admin)
   const navigate=useNavigate()
   
   useEffect(()=>{

@@ -5,6 +5,7 @@ import { Api } from "../../Api/UserApi"
 import { login } from "../../store/admin/AdminSlice"
 import { admintokenStore } from "../../store/admin/AdminToken"
 import { useNavigate } from "react-router-dom"
+import { toast } from "react-toastify"
 
 
 function Login() {
@@ -21,8 +22,13 @@ function Login() {
           dispatch(login(res.data.admin))
           dispatch(admintokenStore(res.data.token))
           navigate("/admin/dashboard")
-        } catch (error) {
+        } catch (error:any) {
           console.log(error)
+          if(error.response?.data?.message){
+            toast.error(error.respones.data.message)
+          }else{
+            toast.error("Login failed")
+          }
         }
     }
 

@@ -10,7 +10,7 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute =({children}:ProtectedRouteProps)=>{
-   const user=useSelector((state:RootState)=>state.auth)
+   const user=useSelector((state:RootState)=>state.auth.user)
    const navigate=useNavigate()
 
   useEffect(()=>{
