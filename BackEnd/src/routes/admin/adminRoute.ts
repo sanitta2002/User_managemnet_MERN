@@ -12,6 +12,21 @@ export class AdminRoute{
        this.adminRoute.post('/login',(req:Request,res:Response)=>{
         this.adminController.adminLogin(req,res)
        })
+       this.adminRoute.get('/getallUser',(req:Request,res:Response)=>{
+        this.adminController.getAllUser(req,res)
+       })
+       this.adminRoute.delete('/deleteUser',(req:Request,res:Response)=>{
+        this.adminController.deleteUser(req,res)
+       })
+       this.adminRoute.put('/upadateUser/:id',(req:Request,res:Response)=>{
+        this.adminController.updateUser(req,res)
+       })
+       this.adminRoute.post('/addUser',(req:Request,res:Response)=>{
+        this.adminController.createUser(req,res)
+       })
+       this.adminRoute.get('/logout',(req:Request,res:Response)=>{
+        this.adminController.logout(req,res)
+       })
     }
     public getAdminRoute(){
         return this.adminRoute
