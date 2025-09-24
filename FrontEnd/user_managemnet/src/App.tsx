@@ -21,6 +21,7 @@ function App() {
      
      <ToastContainer position="top-right" autoClose={3000}  hideProgressBar={false}  newestOnTop={false}/>
      <Routes>
+      <Route path="/" element={<LoginPage/>} />
       <Route path="/signup"  element={<Signup/>}/>
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/home" element={

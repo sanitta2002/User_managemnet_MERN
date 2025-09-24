@@ -5,6 +5,7 @@ import { login } from "../../store/user/AuthSlice"
 import { tokenStore } from "../../store/user/TokenSlice"
 import { useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
+import { AxiosError } from "axios"
 
 
 function Login() {
@@ -28,8 +29,9 @@ function Login() {
          dispatch(login(response.data.user))
          dispatch(tokenStore(response.data.token))
          toast.success("Login Successful")
-         navigate('/home')
+         navigate('/home',{replace:true})
        } catch (error) {
+        if(error instanceof AxiosError)toast.error(error.response?.data.message)
          console.error("Login failed. Please try again.",error)
        }
 

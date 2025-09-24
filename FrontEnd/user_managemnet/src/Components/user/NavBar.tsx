@@ -15,7 +15,7 @@ function NavBar() {
             await Api.get('/user/logout')
             dispatch(logoutUser())
             dispatch(removeToken())
-            navigate('/login')
+            navigate('/login',{replace:true})
         } catch (error) {
             console.error("Logout failed", error)
         }
