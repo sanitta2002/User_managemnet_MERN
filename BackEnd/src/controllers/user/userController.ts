@@ -45,7 +45,7 @@ export class UserController {
         .json({ message: "Login successful", user, accessToken, refreshToken });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ success: false, message: "error" });
+      res.status(400).json({ success: false, message: error instanceof Error ? error.message : "something went wong"});
     }
   }
 

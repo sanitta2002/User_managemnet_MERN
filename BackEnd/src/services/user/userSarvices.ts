@@ -29,6 +29,9 @@ export class UserServices implements IUserServices{
             throw new Error('no Account found with the provided email address.');
             
         }
+        if(user.isAdmin=true){
+            throw new Error('Your not a user')
+        }
         const passwordMatch=await this.bcryptPassword.comparePassword(password,user.password)
         if(!passwordMatch){
             throw new Error('invalid password')

@@ -11,17 +11,20 @@ export class AdminContriller {
     try {
       console.log("Admin login request:", req.body);
       const { email, password } = req.body;
-      const admin = await this.adminServices.isAdminExists(email, password);
-      if (admin) {
-        res.status(200).json({ message: "login successfull", admin });
-      } else {
-        res.status(401).json({ message: "Invalid credentials" });
-      }
-      const isUserEmail = await this.adminServices.isUserEmail(email)
-      if(isUserEmail){
-         res.status(401).json({message:"This is not admin email"})
-         return
-      }
+      // const isEmail=await this.adminServices.isUserEmail(email)
+      // if(isEmail){
+      //   res.status(401).json({ message: "This is not admin email" });
+      //   return
+      // }
+      
+      const admin = await this.adminServices.isAdminExists(email,password)
+      if (!admin) {
+      res.status(401).json({ message: "Invalid credentials" });
+      return
+    }
+     
+     res.status(200).json({ message: "Login successful",admin})
+     return
     } catch (error:any) {
       console.log(error);
       res.status(500).json({ success: false, message: "Something went wrong" });
